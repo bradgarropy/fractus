@@ -4,7 +4,7 @@ import {Tabs} from "~/components/Tabs"
 import type {NavRoute} from "~/types"
 
 export const meta = () => {
-    return [{title: "Account"}]
+    return [{title: "Projects"}]
 }
 
 export const loader = async () => {
@@ -12,10 +12,11 @@ export const loader = async () => {
         setTimeout(
             () =>
                 resolve([
-                    {name: "Billing", url: "/account/billing"},
-                    {name: "Members", url: "/account/members"},
-                    {name: "Organizations", url: "/account/organizations"},
-                    {name: "Settings", url: "/account/settings"},
+                    {name: "Builds", url: "/projects/builds"},
+                    {name: "Deploys", url: "/projects/deploys"},
+                    {name: "Analytics", url: "/projects/analytics"},
+                    {name: "Logs", url: "/projects/logs"},
+                    {name: "Settings", url: "/projects/settings"},
                 ]),
             1000,
         ),

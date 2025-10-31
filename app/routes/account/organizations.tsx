@@ -13,7 +13,7 @@ export const loader = async () => {
     return {message}
 }
 
-export default function Account() {
+const Organizations = () => {
     const {message} = useLoaderData<typeof loader>()
 
     return (
@@ -26,3 +26,5 @@ export default function Account() {
         </Suspense>
     )
 }
+
+export default Organizations

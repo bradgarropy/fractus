@@ -1,17 +1,14 @@
 import {NavLink} from "react-router"
-
-export type Tab = {
-    name: string
-    url: string
-}
+import type {NavRoute} from "~/types"
 
 type TabsProps = {
-    tabs: Tab[]
+    tabs: NavRoute[]
+    className?: string
 }
 
 export const Tabs = ({tabs}: TabsProps) => {
     return (
-        <nav>
+        <nav className="mb-4">
             <ul className="flex gap-4">
                 {tabs.map(tab => {
                     return (

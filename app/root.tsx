@@ -13,6 +13,8 @@ import {
 import type {Route} from "./+types/root"
 import "./app.css"
 import {Suspense} from "react"
+import {Navigation} from "~/components/Navigation"
+import type {NavRoute} from "~/types"
 
 export const links: Route.LinksFunction = () => [
     {rel: "preconnect", href: "https://fonts.googleapis.com"},
@@ -28,20 +30,22 @@ export const links: Route.LinksFunction = () => [
 ]
 
 export const loader = async () => {
-    const routes = [
-        {name: "Home", url: "/"},
-        {name: "Account", url: "/account"},
-        {name: "Projects", url: "/projects"},
-    ]
-
-    const navigation = new Promise<typeof routes>(resolve =>
-        setTimeout(() => resolve(routes), 1000),
+    const navigation = new Promise<NavRoute[]>(resolve =>
+        setTimeout(
+            () =>
+                resolve([
+                    {name: "Home", url: "/"},
+                    {name: "Account", url: "/account"},
+                    {name: "Projects", url: "/projects"},
+                ]),
+            1000,
+        ),
     )
 
     return {navigation}
 }
 
-export function Layout({children}: {children: React.ReactNode}) {
+export const Layout = ({children}: {children: React.ReactNode}) => {
     return (
         <html lang="en">
             <head>
@@ -71,22 +75,8 @@ export default function App() {
             <aside>
                 <Suspense fallback={<div>Loading navigation...</div>}>
                     <Await resolve={navigation}>
-                        {navigation => {
-                            return (
-                                <nav>
-                                    <ul>
-                                        {navigation.map(item => {
-                                            return (
-                                                <li key={item.name}>
-                                                    <Link to={item.url}>
-                                                        {item.name}
-                                                    </Link>
-                                                </li>
-                                            )
-                                        })}
-                                    </ul>
-                                </nav>
-                            )
+                        {routes => {
+                            return <Navigation routes={routes} />
                         }}
                     </Await>
                 </Suspense>
@@ -99,7 +89,7 @@ export default function App() {
     )
 }
 
-export function ErrorBoundary({error}: Route.ErrorBoundaryProps) {
+export const ErrorBoundary = ({error}: Route.ErrorBoundaryProps) => {
     let message = "Oops!"
     let details = "An unexpected error occurred."
     let stack: string | undefined

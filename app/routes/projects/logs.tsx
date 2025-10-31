@@ -2,18 +2,18 @@ import {Await, useLoaderData} from "react-router"
 import {Suspense} from "react"
 
 export const meta = () => {
-    return [{title: "Account"}]
+    return [{title: "Logs"}]
 }
 
 export const loader = async () => {
     const message = new Promise<string>(resolve =>
-        setTimeout(() => resolve("Account Index"), 1000),
+        setTimeout(() => resolve("Projects Logs"), 1000),
     )
 
     return {message}
 }
 
-const Index = () => {
+const Logs = () => {
     const {message} = useLoaderData<typeof loader>()
 
     return (
@@ -27,4 +27,4 @@ const Index = () => {
     )
 }
 
-export default Index
+export default Logs

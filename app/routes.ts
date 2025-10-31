@@ -15,5 +15,12 @@ export default [
         route("/account/organizations", "routes/account/organizations.tsx"),
         route("/account/settings", "routes/account/settings.tsx"),
     ]),
-    route("/projects", "routes/projects.tsx"),
+    layout("routes/projects/layout.tsx", [
+        route("/projects", "routes/projects/index.tsx"),
+        route("/projects/builds", "routes/projects/builds.tsx"),
+        route("/projects/deploys", "routes/projects/deploys.tsx"),
+        route("/projects/analytics", "routes/projects/analytics.tsx"),
+        route("/projects/logs", "routes/projects/logs.tsx"),
+        route("/projects/settings", "routes/projects/settings.tsx"),
+    ]),
 ] satisfies RouteConfig

@@ -1,12 +1,8 @@
 import {NavLink} from "react-router"
-
-export type Route = {
-    name: string
-    url: string
-}
+import type {NavRoute} from "~/types"
 
 type NavigationProps = {
-    routes: Route[]
+    routes: NavRoute[]
 }
 
 export const Navigation = ({routes}: NavigationProps) => {

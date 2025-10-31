@@ -2,12 +2,12 @@ import {Await, useLoaderData} from "react-router"
 import {Suspense} from "react"
 
 export const meta = () => {
-    return [{title: "Account"}]
+    return [{title: "Projects"}]
 }
 
 export const loader = async () => {
     const message = new Promise<string>(resolve =>
-        setTimeout(() => resolve("Account Index"), 1000),
+        setTimeout(() => resolve("Projects Index"), 1000),
     )
 
     return {message}
